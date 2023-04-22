@@ -1,7 +1,7 @@
 :root {
 	--primary-color: #222831;
 	--secondary-color: #393e46;
-	--tertiary-color: #eeeeee;
+	--tertiary-color: #f1f1f1;
 	--sans-serif-font-family: "Roboto", Arial, Helvetica, sans-serif;
 	--serif-font-family: "Roboto Slab", Georgia, Garamond, serif;
 	--line-height: 1.4;
@@ -26,6 +26,11 @@ h6 {
 p,
 a {
 	font-family: var(--sans-serif-font-family);
+}
+
+main {
+	background-color: var(--tertiary-color);
+	height: 100vh;
 }
 
 .header-image {

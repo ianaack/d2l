@@ -17,11 +17,11 @@ const LeadershipStyles = () => {
 			<div className="text-center">
 				<Link to="/objectives">
 					<button className="btn btn-lg btn-warning mx-2">
-						Previous Slide
+						Previous
 					</button>
 				</Link>
 				<Link to="/leadership-styles/styles">
-					<button className="btn btn-lg btn-primary mx-2">Next Slide</button>
+					<button className="btn btn-lg btn-primary mx-2">Next</button>
 				</Link>
 			</div>
 		</div>
