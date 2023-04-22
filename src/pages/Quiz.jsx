@@ -82,24 +82,24 @@ const Quiz = () => {
 
 	return (
 		// within the same div element, either render the question based on the array.length, or render the final score
-		<div>
+		<div className="container text-center">
 			{showScore ? (
-				<>
+				<div className="py-5 mt-4">
 					{/* Display final score */}
-					<section className="">
+					<div className="display-4">
 						Your score is {score} out of{" "}
 						{MultipleChoiceQuestions.length + SelectAllQuestions.length}
-					</section>
+					</div>
 					{/* Button to exit quiz */}
 					<div className="">
 						<Link to="/">
-							<button className="btn btn-success">Exit Quiz</button>
+							<button className="btn btn-lg btn-success mt-4">Exit Quiz</button>
 						</Link>
 					</div>
-				</>
+				</div>
 			) : (
-				<>
-					<section className="">
+				<div className="mt-4">
+					<div className="">
 						{/* Display question # out of # */}
 						<h1>
 							Question {currentQuestion + 1}/
@@ -113,9 +113,9 @@ const Quiz = () => {
 										currentQuestion - MultipleChoiceQuestions.length
 								  ].questionText}
 						</p>
-					</section>
+					</div>
 
-					<section className="">
+					<div className="">
 						{/* Render the appropriate answerOptions, and appropriate logic from above, if the question displayed is a MultipleChoiceQuestion or a SelectAllQuestion */}
 						{currentQuestion < MultipleChoiceQuestions.length
 							? MultipleChoiceQuestions[currentQuestion].answerOptions.map(
@@ -123,7 +123,7 @@ const Quiz = () => {
 										<button
 											key={item.answerText}
 											onClick={() => handleClick(item.isCorrect)}
-											className="btn btn-primary m-2"
+											className="btn btn-lg btn-primary m-2"
 										>
 											{item.answerText}
 										</button>
@@ -132,10 +132,11 @@ const Quiz = () => {
 							: SelectAllQuestions[
 									currentQuestion - MultipleChoiceQuestions.length
 							  ].answerOptions.map((item) => (
-									<div key={item.answerText}>
-										<label>
+									<div className="form-check" key={item.answerText}>
+										<label className="form-check-label">
 											<input
 												type="checkbox"
+												className="form-check-input mb-2"
 												value={item.answerText}
 												onChange={handleCheckboxChange}
 											/>
@@ -143,27 +144,27 @@ const Quiz = () => {
 										</label>
 									</div>
 							  ))}
-					</section>
+					</div>
 
 					{/* Render a skip question button if the currentQuestion is a MultipleChoiceQuestion or render a submit button if the currentQuestion is a SelectAllQuestion */}
-					<section className="">
+					<div className="">
 						{currentQuestion < MultipleChoiceQuestions.length ? (
 							<button
 								onClick={() => handleClick(false)}
-								className="btn btn-danger"
+								className="btn btn-sm btn-danger mt-4"
 							>
 								Skip Question
 							</button>
 						) : (
 							<button
 								onClick={handleSelectAllClick}
-								className="btn btn-success"
+								className="btn btn-success mt-4"
 							>
 								Submit Answer
 							</button>
 						)}
-					</section>
-				</>
+					</div>
+				</div>
 			)}
 		</div>
 	);
