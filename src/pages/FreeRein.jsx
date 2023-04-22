@@ -41,7 +41,7 @@ const FreeRein = () => {
 					<Link to="/leadership-styles/styles/democratic">
 						<button className="btn btn-lg btn-warning mx-2">Previous</button>
 					</Link>
-					<Link to="/leadership-styles/styles/quiz">
+					<Link to="/quiz">
 						<button className="btn btn-lg btn-primary mx-2">Next</button>
 					</Link>
 				</div>
