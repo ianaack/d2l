@@ -28,9 +28,7 @@ a {
 	font-family: var(--sans-serif-font-family);
 }
 
-.autocratic-header {
-	background-image: url("../src/assets/images/img_01.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-  color: var(--primary-color)
+.header-image {
+	width: 100%;
+	height: auto;
 }
