@@ -15,7 +15,9 @@ const Introduction = () => {
 				</div>
 				<div className="text-center">
 					<Link to="/objectives">
-						<button className="btn btn-lg btn-success">Start Module</button>
+						<button className="btn btn-lg btn-success">
+							Start Module<i className="bi bi-arrow-right-circle ms-2"></i>
+						</button>
 					</Link>
 				</div>
 			</div>

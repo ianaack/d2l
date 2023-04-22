@@ -154,6 +154,7 @@ const Quiz = () => {
 								className="btn btn-sm btn-danger mt-4"
 							>
 								Skip Question
+								<i className="bi bi-arrow-right-circle ms-2"></i>
 							</button>
 						) : (
 							<button
