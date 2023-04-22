@@ -9,6 +9,7 @@ import Styles from "./pages/Styles";
 import Quiz from "./pages/Quiz";
 import Autocratic from "./pages/Autocratic";
 import Democratic from "./pages/Democratic";
+import FreeRein from "./pages/FreeRein";
 
 function App() {
 	return (
@@ -26,6 +27,10 @@ function App() {
 					<Route
 						path="/leadership-styles/styles/democratic"
 						element={<Democratic />}
+					/>
+					<Route
+						path="/leadership-styles/styles/free-rein"
+						element={<FreeRein />}
 					/>
 					<Route path="/quiz" element={<Quiz />} />
 				</Routes>
