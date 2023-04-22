@@ -5,7 +5,7 @@ const Objectives = () => {
 		<div className="container">
 			<div className="px-2 py-5 my-5 text-center">
 				<h1 className="display-5 fw-bold">Learning Objectives</h1>
-				<p className="lead mb-2">
+				<p className="mb-2 fs-5">
 					By the end of this module, you should be able to:
 				</p>
 				<div className="d-flex justify-content-center flex-wrap">
@@ -17,8 +17,13 @@ const Objectives = () => {
 				</div>
 			</div>
 			<div className="text-center">
+				<Link to="/">
+					<button className="btn btn-lg btn-warning mx-2">
+						Previous Slide
+					</button>
+				</Link>
 				<Link to="/leadership-styles">
-					<button className="btn btn-primary">Next Slide</button>
+					<button className="btn btn-lg btn-primary mx-2">Next Slide</button>
 				</Link>
 			</div>
 		</div>

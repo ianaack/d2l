@@ -2,22 +2,26 @@ import { Link } from "react-router-dom";
 
 const LeadershipStyles = () => {
 	return (
-		<div>
-			<h1>Leadership Styles</h1>
-			<p>
-				Leadership styles refers to the broad approach adopted by a leader. All
-				leaders (at least all those leaders who already have followers) have
-				one. If you are already a leader, that includes you. You just might not
-				know what it is yet. But your followers do! Style is often based on a
-				leader's own beliefs, personality, experiences, working environment and
-				their assessment of the situation at the time.
-			</p>
-			<div className="">
-				<Link to="/">
-					<button className="btn btn-warning">Previous Slide</button>
+		<div className="container">
+			<div className="px-2 py-5 my-5 text-center">
+				<h1 className="display-5 fw-bold">Leadership Styles</h1>
+				<p className="mb-2 fs-5">
+					Leadership styles refers to the broad approach adopted by a leader.
+					All leaders (at least all those leaders who already have followers)
+					have one. If you are already a leader, that includes you. You just
+					might not know what it is yet. But your followers do! Style is often
+					based on a leader's own beliefs, personality, experiences, working
+					environment and their assessment of the situation at the time.
+				</p>
+			</div>
+			<div className="text-center">
+				<Link to="/objectives">
+					<button className="btn btn-lg btn-warning mx-2">
+						Previous Slide
+					</button>
 				</Link>
 				<Link to="/leadership-styles/styles">
-					<button className="btn btn-primary">Next Slide</button>
+					<button className="btn btn-lg btn-primary mx-2">Next Slide</button>
 				</Link>
 			</div>
 		</div>
