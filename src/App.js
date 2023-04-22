@@ -7,6 +7,7 @@ import Objectives from "./pages/Objectives";
 import LeadershipStyles from "./pages/LeadershipStyles";
 import Styles from "./pages/Styles";
 import Quiz from "./pages/Quiz";
+import Autocratic from "./pages/Autocratic";
 
 function App() {
 	return (
@@ -17,10 +18,13 @@ function App() {
 					<Route path="/objectives" element={<Objectives />} />
 					<Route path="/leadership-styles" element={<LeadershipStyles />} />
 					<Route path="/leadership-styles/styles" element={<Styles />} />
+					<Route
+						path="/leadership-styles/styles/autocratic"
+						element={<Autocratic />}
+					/>
 					<Route path="/quiz" element={<Quiz />} />
 				</Routes>
 			</Router>
-			
 		</main>
 	);
 }
