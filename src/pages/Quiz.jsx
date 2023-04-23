@@ -46,6 +46,7 @@ const Quiz = () => {
 		}
 	};
 
+	// this function calls the next question if there is one, or shows the final score if not
 	const callNextQuestion = () => {
 		//  if there are more questions in the array, call the next question object
 		//  else show final score
@@ -58,6 +59,7 @@ const Quiz = () => {
 		}
 	};
 
+	// this function compares the answers given to the correct answers provided by the question component
 	const compareAnswers = () => {
 		const correctAnswers = currentSelectAll.correctAnswers;
 
@@ -90,20 +92,21 @@ const Quiz = () => {
 					<div className="display-4">
 						Your score is {((score / questions) * 100).toFixed(0)}%!
 					</div>
-					{/* Button to exit quiz */}
-					<div className="">
+					<nav className="">
+						{/* Button to retake quiz */}
 						<button
 							className="btn btn-lg btn-secondary mt-4 mx-2"
 							onClick={reload}
 						>
 							Retake Quiz
 						</button>
+						{/* Button to exit quiz */}
 						<Link to="/">
 							<button className="btn btn-lg btn-success mt-4 mx-2">
 								Exit Quiz
 							</button>
 						</Link>
-					</div>
+					</nav>
 				</header>
 			) : (
 				<article className="py-5 mt-4">
@@ -133,7 +136,10 @@ const Quiz = () => {
 									</button>
 							  ))
 							: currentSelectAll.answerOptions.map((item) => (
-									<div className="form-check" key={item.answerText}>
+									<div
+										className="form-check form-control-lg"
+										key={item.answerText}
+									>
 										<label
 											className="form-check-label"
 											htmlFor={item.answerText}
@@ -142,7 +148,7 @@ const Quiz = () => {
 												id={item.answerText}
 												name={item.answerText}
 												type="checkbox"
-												className="form-check-input mb-2"
+												className="form-check-input  mb-2"
 												value={item.answerText}
 												onChange={handleCheckboxChange}
 											/>
