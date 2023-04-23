@@ -4,9 +4,13 @@ import img_01 from "../assets/images/img_01.jpg";
 const Autocratic = () => {
 	return (
 		<>
-			<img src={img_01} alt="" className="header-image" />
-			<div className="container">
-				<div className=" px-2 mt-4 text-center">
+			<img
+				src={img_01}
+				alt="Autocratic Leadership Header"
+				className="header-image"
+			/>
+			<section className="container">
+				<header className="px-2 mt-4 text-center">
 					<h1 className="display-5 fw-bold border-2 border-bottom pb-2">
 						Autocratic Leadership
 					</h1>
@@ -18,8 +22,8 @@ const Autocratic = () => {
 						accept advice from followers. Autocratic leadership involves
 						absolute, authoritarian control over a group.
 					</p>
-				</div>
-				<div className="card text-center mb-4">
+				</header>
+				<article className="card text-center mb-4">
 					<div className="card-header text-bg-secondary">
 						Characteristics of Autocratic Leadership
 					</div>
@@ -35,8 +39,8 @@ const Autocratic = () => {
 							Group members are rarely trusted with decisions or important tasks
 						</li>
 					</ul>
-				</div>
-				<div className="text-center">
+				</article>
+				<nav className="text-center">
 					<Link to="/leadership-styles/styles">
 						<button className="btn btn-lg btn-warning mx-2">
 							<i className="bi bi-arrow-left-circle me-2"></i>Previous
@@ -47,8 +51,8 @@ const Autocratic = () => {
 							Next<i className="bi bi-arrow-right-circle ms-2"></i>
 						</button>
 					</Link>
-				</div>
-			</div>
+				</nav>
+			</section>
 		</>
 	);
 };

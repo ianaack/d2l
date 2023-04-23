@@ -4,9 +4,13 @@ import img_02 from "../assets/images/img_02.jpg";
 const Democratic = () => {
 	return (
 		<>
-			<img src={img_02} alt="" className="header-image" />
-			<div className="container">
-				<div className="px-2 mt-4 text-center">
+			<img
+				src={img_02}
+				alt="Democratic Leadership Header"
+				className="header-image"
+			/>
+			<section className="container">
+				<header className="px-2 mt-4 text-center">
 					<h1 className="display-5 fw-bold border-2 border-bottom pb-2">
 						Democratic Leadership
 					</h1>
@@ -15,8 +19,8 @@ const Democratic = () => {
 						type of leadership style in which members of the group take a more
 						participative role in the decision-making process.
 					</p>
-				</div>
-				<div className="card text-center mb-4">
+				</header>
+				<article className="card text-center mb-4">
 					<div className="card-header text-bg-secondary">
 						Characteristics of Democratic Leadership
 					</div>
@@ -32,8 +36,8 @@ const Democratic = () => {
 							Creativity is encouraged and rewarded.
 						</li>
 					</ul>
-				</div>
-				<div className="text-center">
+				</article>
+				<nav className="text-center">
 					<Link to="/leadership-styles/styles/autocratic">
 						<button className="btn btn-lg btn-warning mx-2">
 							<i className="bi bi-arrow-left-circle me-2"></i>Previous
@@ -44,8 +48,8 @@ const Democratic = () => {
 							Next<i className="bi bi-arrow-right-circle ms-2"></i>
 						</button>
 					</Link>
-				</div>
-			</div>
+				</nav>
+			</section>
 		</>
 	);
 };

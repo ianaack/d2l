@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const LeadershipStyles = () => {
 	return (
-		<div className="container">
-			<div className="px-2 py-5 my-5 text-center">
+		<section className="container">
+			<header className="px-2 py-5 my-5 text-center">
 				<h1 className="display-5 fw-bold">Leadership Styles</h1>
 				<p className="mb-2 fs-5">
 					Leadership styles refers to the broad approach adopted by a leader.
@@ -13,8 +13,8 @@ const LeadershipStyles = () => {
 					based on a leader's own beliefs, personality, experiences, working
 					environment and their assessment of the situation at the time.
 				</p>
-			</div>
-			<div className="text-center">
+			</header>
+			<nav className="text-center">
 				<Link to="/objectives">
 					<button className="btn btn-lg btn-warning mx-2">
 						<i className="bi bi-arrow-left-circle me-2"></i>Previous
@@ -25,8 +25,8 @@ const LeadershipStyles = () => {
 						Next<i className="bi bi-arrow-right-circle ms-2"></i>
 					</button>
 				</Link>
-			</div>
-		</div>
+			</nav>
+		</section>
 	);
 };
 

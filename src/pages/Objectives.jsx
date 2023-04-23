@@ -2,21 +2,21 @@ import { Link } from "react-router-dom";
 
 const Objectives = () => {
 	return (
-		<div className="container">
-			<div className="px-2 py-5 my-5 text-center">
+		<section className="container">
+			<header className="px-2 py-5 my-5 text-center">
 				<h1 className="display-5 fw-bold">Learning Objectives</h1>
 				<p className="mb-2 fs-5">
 					By the end of this module, you should be able to:
 				</p>
-				<div className="d-flex justify-content-center flex-wrap">
-					<div className="card m-2 col-lg-3 col-md-6 col-sm-12">
-						<div className="lead fw-bold card-body">
+				<article className="d-flex justify-content-center flex-wrap">
+					<ul className="list-group m-2 col-md-6 col-sm-12">
+						<li className="lead list-group-item fw-bold ">
 							Describe the three different leadership styles
-						</div>
-					</div>
-				</div>
-			</div>
-			<div className="text-center">
+						</li>
+					</ul>
+				</article>
+			</header>
+			<nav className="text-center">
 				<Link to="/">
 					<button className="btn btn-lg btn-warning mx-2">
 						<i className="bi bi-arrow-left-circle me-2"></i>Previous
@@ -27,8 +27,8 @@ const Objectives = () => {
 						Next<i className="bi bi-arrow-right-circle ms-2"></i>
 					</button>
 				</Link>
-			</div>
-		</div>
+			</nav>
+		</section>
 	);
 };
 

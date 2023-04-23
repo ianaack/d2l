@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Styles = () => {
 	return (
-		<div className="container">
-			<div className="px-2 mt-4 text-center">
+		<section className="container">
+			<header className="px-2 mt-4 text-center">
 				<h1 className="display-5 fw-bold border-2 border-bottom pb-2">
 					Autocratic, Democratic,
 					<br /> and Free-Rein Leadership
@@ -11,13 +11,15 @@ const Styles = () => {
 				<p className="lead">
 					Three common leadership styles that we all naturally gravitate to are:
 				</p>
-			</div>
-			<ul className="list-group text-center m-4">
-				<li className="list-group-item fw-bold">AUTOCRATIC</li>
-				<li className="list-group-item fw-bold">DEMOCRATIC</li>
-				<li className="list-group-item fw-bold">FREE-REIN</li>
-			</ul>
-			<div className="text-center mb-4">
+			</header>
+			<article className="text-center mx-auto my-4 col-sm-12 col-md-6 col-lg-3">
+				<ul className="list-group ">
+					<li className="list-group-item fw-bold">AUTOCRATIC</li>
+					<li className="list-group-item fw-bold">DEMOCRATIC</li>
+					<li className="list-group-item fw-bold">FREE-REIN</li>
+				</ul>
+			</article>
+			<article className="text-center mb-4">
 				<p className="">
 					<strong>Be Selective in your Leadership Style</strong>
 				</p>
@@ -29,8 +31,8 @@ const Styles = () => {
 						you need to work on.
 					</small>
 				</p>
-			</div>
-			<div className="text-center">
+			</article>
+			<nav className="text-center">
 				<Link to="/leadership-styles">
 					<button className="btn btn-lg btn-warning mx-2">
 						<i className="bi bi-arrow-left-circle me-2"></i>Previous
@@ -41,8 +43,8 @@ const Styles = () => {
 						Next<i className="bi bi-arrow-right-circle ms-2"></i>
 					</button>
 				</Link>
-			</div>
-		</div>
+			</nav>
+		</section>
 	);
 };
 

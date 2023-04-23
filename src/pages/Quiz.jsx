@@ -83,9 +83,9 @@ const Quiz = () => {
 
 	return (
 		// within the same div element, either render the question based on the array.length, or render the final score
-		<div className="container text-center">
+		<section className="container text-center">
 			{showScore ? (
-				<div className="py-5 mt-4">
+				<header className="py-5 mt-4">
 					{/* Display final score */}
 					<div className="display-4">
 						Your score is {((score / questions) * 100).toFixed(0)}%!
@@ -104,10 +104,10 @@ const Quiz = () => {
 							</button>
 						</Link>
 					</div>
-				</div>
+				</header>
 			) : (
-				<div className="mt-4">
-					<div className="">
+				<article className="py-5 mt-4">
+					<header>
 						{/* Display question # out of # */}
 						<h1>
 							Question {currentQuestion + 1}/{questions}
@@ -118,9 +118,9 @@ const Quiz = () => {
 								? currentMultipleChoice.questionText
 								: currentSelectAll.questionText}
 						</p>
-					</div>
+					</header>
 
-					<div className="">
+					<fieldset>
 						{/* Render the appropriate answerOptions, and appropriate logic from above, if the question displayed is a MultipleChoiceQuestion or a SelectAllQuestion */}
 						{currentQuestion < MultipleChoiceQuestions.length
 							? currentMultipleChoice.answerOptions.map((item) => (
@@ -134,8 +134,13 @@ const Quiz = () => {
 							  ))
 							: currentSelectAll.answerOptions.map((item) => (
 									<div className="form-check" key={item.answerText}>
-										<label className="form-check-label">
+										<label
+											className="form-check-label"
+											htmlFor={item.answerText}
+										>
 											<input
+												id={item.answerText}
+												name={item.answerText}
 												type="checkbox"
 												className="form-check-input mb-2"
 												value={item.answerText}
@@ -145,10 +150,10 @@ const Quiz = () => {
 										</label>
 									</div>
 							  ))}
-					</div>
+					</fieldset>
 
 					{/* Render a skip question button if the currentQuestion is a MultipleChoiceQuestion or render a submit button if the currentQuestion is a SelectAllQuestion */}
-					<div className="">
+					<nav>
 						{currentQuestion < MultipleChoiceQuestions.length ? (
 							<button
 								onClick={() => handleClick(false)}
@@ -165,10 +170,10 @@ const Quiz = () => {
 								Submit Answer
 							</button>
 						)}
-					</div>
-				</div>
+					</nav>
+				</article>
 			)}
-		</div>
+		</section>
 	);
 };
 
