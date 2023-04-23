@@ -9,6 +9,13 @@ const Quiz = () => {
 	const [score, setScore] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [selectedOptions, setSelectedOptions] = useState([]);
+	const [isSelectionCorrect, setIsSelectionCorrect] = useState(false);
+
+	// Component variables
+	const questions = MultipleChoiceQuestions.length + SelectAllQuestions.length;
+	const currentSelectAll =
+		SelectAllQuestions[currentQuestion - MultipleChoiceQuestions.length];
+	const currentMultipleChoice = MultipleChoiceQuestions[currentQuestion];
 
 	// handleClick function for multiple choice questions
 	const handleClick = (isCorrect) => {
@@ -16,53 +23,34 @@ const Quiz = () => {
 		if (isCorrect) {
 			setScore(score + 1);
 		}
-
-		//  if there are more questions in the array, call the next question object
-		//  else show final score
-		const nextQuestion = currentQuestion + 1;
-		if (
-			nextQuestion <
-			MultipleChoiceQuestions.length + SelectAllQuestions.length
-		) {
-			setCurrentQuestion(nextQuestion);
-		} else {
-			setShowScore(true);
-		}
+		callNextQuestion();
 	};
 
 	// handleClick function for select all questions
 	const handleSelectAllClick = () => {
-		// by default all options are true
-		let isCorrect = true;
-		// check if all correct options are selected
-		const currentQuestionObject = SelectAllQuestions[currentQuestion];
-		// if currentQuestionObject is undefined, the forEach loop will not execute, and the isCorrect value will remain true
-		if (currentQuestionObject) {
-			currentQuestionObject.answerOptions.forEach((item) => {
-				// compare the answer item to the state array and if neither match, set isCorrect to false
-				if (item.isCorrect && !selectedOptions.includes(item.answerText)) {
-					isCorrect = false;
-				} else if (
-					!item.isCorrect &&
-					selectedOptions.includes(item.answerText)
-				) {
-					isCorrect = false;
-				}
-			});
-		}
-
+		compareAnswers();
 		// if all correct options are selected, increase score by 1
-		if (isCorrect) {
+		if (isSelectionCorrect) {
 			setScore(score + 1);
 		}
+		callNextQuestion();
+	};
 
+	// handle selection of checkboxes for select all that apply questions
+	const handleCheckboxChange = (e) => {
+		const { value, checked } = e.target;
+		if (checked) {
+			setSelectedOptions([...selectedOptions, value]);
+		} else {
+			setSelectedOptions(selectedOptions.filter((e) => e !== value));
+		}
+	};
+
+	const callNextQuestion = () => {
 		//  if there are more questions in the array, call the next question object
 		//  else show final score
 		const nextQuestion = currentQuestion + 1;
-		if (
-			nextQuestion <
-			MultipleChoiceQuestions.length + SelectAllQuestions.length
-		) {
+		if (nextQuestion < questions) {
 			setCurrentQuestion(nextQuestion);
 			setSelectedOptions([]);
 		} else {
@@ -70,14 +58,27 @@ const Quiz = () => {
 		}
 	};
 
-	// handle selection of checkboxes for select all that apply questions
-	const handleCheckboxChange = (e) => {
-		const value = e.target.value;
-		if (selectedOptions.includes(value)) {
-			setSelectedOptions(selectedOptions.filter((option) => option !== value));
-		} else {
-			setSelectedOptions([...selectedOptions, value]);
+	const compareAnswers = () => {
+		const correctAnswers = currentSelectAll.correctAnswers;
+
+		// if the arrays are not equal in length, setIsSelectionCorrect to false and break out the compareAnswers function.
+		if (selectedOptions.length !== correctAnswers.length) {
+			setIsSelectionCorrect(false);
+			return;
 		}
+
+		// compare each option in the 2 arrays, if every element in selectedOptions is present in correctAnswers, the compareSelection will be true, otherwise it will be assigned false
+		const compareSelection = selectedOptions.every((option) =>
+			correctAnswers.includes(option)
+		);
+
+		// pass the value of compareSelection (true or false) to setIsSelectionCorrect
+		setIsSelectionCorrect(compareSelection);
+	};
+
+	// allow a user to reload the quiz page in order to retake the quiz
+	const reload = () => {
+		window.location.reload();
 	};
 
 	return (
@@ -87,13 +88,20 @@ const Quiz = () => {
 				<div className="py-5 mt-4">
 					{/* Display final score */}
 					<div className="display-4">
-						Your score is {score} out of{" "}
-						{MultipleChoiceQuestions.length + SelectAllQuestions.length}
+						Your score is {((score / questions) * 100).toFixed(0)}%!
 					</div>
 					{/* Button to exit quiz */}
 					<div className="">
+						<button
+							className="btn btn-lg btn-secondary mt-4 mx-2"
+							onClick={reload}
+						>
+							Retake Quiz
+						</button>
 						<Link to="/">
-							<button className="btn btn-lg btn-success mt-4">Exit Quiz</button>
+							<button className="btn btn-lg btn-success mt-4 mx-2">
+								Exit Quiz
+							</button>
 						</Link>
 					</div>
 				</div>
@@ -102,36 +110,29 @@ const Quiz = () => {
 					<div className="">
 						{/* Display question # out of # */}
 						<h1>
-							Question {currentQuestion + 1}/
-							{MultipleChoiceQuestions.length + SelectAllQuestions.length}
+							Question {currentQuestion + 1}/{questions}
 						</h1>
 						{/* Display the questionText of either the MultipleChoiceQuestions or SelectAllQuestions */}
 						<p>
 							{currentQuestion < MultipleChoiceQuestions.length
-								? MultipleChoiceQuestions[currentQuestion].questionText
-								: SelectAllQuestions[
-										currentQuestion - MultipleChoiceQuestions.length
-								  ].questionText}
+								? currentMultipleChoice.questionText
+								: currentSelectAll.questionText}
 						</p>
 					</div>
 
 					<div className="">
 						{/* Render the appropriate answerOptions, and appropriate logic from above, if the question displayed is a MultipleChoiceQuestion or a SelectAllQuestion */}
 						{currentQuestion < MultipleChoiceQuestions.length
-							? MultipleChoiceQuestions[currentQuestion].answerOptions.map(
-									(item) => (
-										<button
-											key={item.answerText}
-											onClick={() => handleClick(item.isCorrect)}
-											className="btn btn-lg btn-primary m-2"
-										>
-											{item.answerText}
-										</button>
-									)
-							  )
-							: SelectAllQuestions[
-									currentQuestion - MultipleChoiceQuestions.length
-							  ].answerOptions.map((item) => (
+							? currentMultipleChoice.answerOptions.map((item) => (
+									<button
+										key={item.answerText}
+										onClick={() => handleClick(item.isCorrect)}
+										className="btn btn-lg btn-primary m-2"
+									>
+										{item.answerText}
+									</button>
+							  ))
+							: currentSelectAll.answerOptions.map((item) => (
 									<div className="form-check" key={item.answerText}>
 										<label className="form-check-label">
 											<input

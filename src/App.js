@@ -13,7 +13,7 @@ import FreeRein from "./pages/FreeRein";
 
 function App() {
 	return (
-		<main style={{ overflow: "hidden" }}>
+		<main>
 			<Router>
 				<Routes>
 					<Route path="/" element={<Introduction />} />

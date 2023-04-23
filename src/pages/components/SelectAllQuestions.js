@@ -27,6 +27,7 @@ export const SelectAllQuestions = [
 					"Star Wars fans will know that this the name given to young apprentices of the Jedi Knights.  Padawans are followers and leaders-in-training.",
 			},
 		],
+		correctAnswers: ["Military Officers", "Jedi Knights", "Civil Servants"],
 	},
 	{
 		questionText:
@@ -57,6 +58,6 @@ export const SelectAllQuestions = [
 					"Correct! Free-rein leadership, also called Laissez-Faire, is a type of leadership style in which leaders are hands-off and allow group members to make the decisions.",
 			},
 		],
-		correctAnswers: [1, 2, 3],
+		correctAnswers: ["Autocratic", "Democratic", "Laissez-faire"],
 	},
 ];

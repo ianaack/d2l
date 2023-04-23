@@ -28,8 +28,11 @@ a {
 	font-family: var(--sans-serif-font-family);
 }
 
-main {
+body {
 	background-color: var(--tertiary-color);
+}
+
+main {
 	height: 100vh;
 }
 
