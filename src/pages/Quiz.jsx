@@ -18,12 +18,32 @@ const Quiz = () => {
 	const currentMultipleChoice = MultipleChoiceQuestions[currentQuestion];
 
 	// handleClick function for multiple choice questions
-	const handleClick = (isCorrect) => {
-		// if option is correct, increase score by 1
+	const handleClick = (isCorrect, answerID) => {
+		// Remove disabled attribute from the next question button, allowing a user to move on with the quiz
+		const nextQuestionBtn = document.getElementById("nextQuestionBtn");
+		nextQuestionBtn.classList.remove("hidden");
+
+		// Get all the answer elements
+		const answerElements = document.querySelectorAll(".answer");
+
+		// Loop through all the answer elements and disable them if they are not the clicked answer
+		answerElements.forEach((element) => {
+			if (element.id !== `answer${answerID}`) {
+				element.setAttribute("disabled", true);
+			}
+		});
+
+		// Get the clicked answer element by its ID
+		const answerElement = document.getElementById(`answer${answerID}`);
+
+		// if the clicked answer is correct, change the btn colour from blue to green and increase the score by 1
+		// otherwise replace the btn colour from blue to red
 		if (isCorrect) {
+			answerElement.classList.replace("btn-primary", "btn-success");
 			setScore(score + 1);
+		} else {
+			answerElement.classList.replace("btn-primary", "btn-danger");
 		}
-		callNextQuestion();
 	};
 
 	// handleClick function for select all questions
@@ -33,7 +53,6 @@ const Quiz = () => {
 		if (isSelectionCorrect) {
 			setScore(score + 1);
 		}
-		callNextQuestion();
 	};
 
 	// handle selection of checkboxes for select all that apply questions
@@ -48,6 +67,9 @@ const Quiz = () => {
 
 	// this function calls the next question if there is one, or shows the final score if not
 	const callNextQuestion = () => {
+		console.log(`Element was clicked.`);
+		const nextQuestionBtn = document.getElementById("nextQuestionBtn");
+		nextQuestionBtn.classList.add("hidden");
 		//  if there are more questions in the array, call the next question object
 		//  else show final score
 		const nextQuestion = currentQuestion + 1;
@@ -129,8 +151,9 @@ const Quiz = () => {
 							? currentMultipleChoice.answerOptions.map((item) => (
 									<button
 										key={item.answerText}
-										onClick={() => handleClick(item.isCorrect)}
-										className="btn btn-lg btn-primary m-2"
+										id={"answer" + item.id}
+										onClick={() => handleClick(item.isCorrect, item.id)}
+										className="btn btn-lg btn-primary m-2 answer"
 									>
 										{item.answerText}
 									</button>
@@ -162,11 +185,11 @@ const Quiz = () => {
 					<nav className="text-center">
 						{currentQuestion < MultipleChoiceQuestions.length ? (
 							<button
-								onClick={() => handleClick(false)}
-								className="btn btn-sm btn-danger mt-4"
+								id="nextQuestionBtn"
+								onClick={callNextQuestion}
+								className="btn btn-sm btn-primary mt-4 hidden"
 							>
-								Skip Question
-								<i className="bi bi-arrow-right-circle ms-2"></i>
+								Next Question<i className="bi bi-arrow-right-circle ms-2"></i>
 							</button>
 						) : (
 							<button
