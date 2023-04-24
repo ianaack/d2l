@@ -85,7 +85,7 @@ const Quiz = () => {
 
 	return (
 		// within the same div element, either render the question based on the array.length, or render the final score
-		<section className="container text-center">
+		<section className="container">
 			{showScore ? (
 				<header className="py-5 mt-4">
 					{/* Display final score */}
@@ -110,7 +110,7 @@ const Quiz = () => {
 				</header>
 			) : (
 				<article className="py-5 mt-4">
-					<header>
+					<header className="text-center">
 						{/* Display question # out of # */}
 						<h1>
 							Question {currentQuestion + 1}/{questions}
@@ -123,7 +123,7 @@ const Quiz = () => {
 						</p>
 					</header>
 
-					<fieldset>
+					<fieldset className="d-flex flex-column m-auto col-lg-6 col-md-8 col-sm-12">
 						{/* Render the appropriate answerOptions, and appropriate logic from above, if the question displayed is a MultipleChoiceQuestion or a SelectAllQuestion */}
 						{currentQuestion < MultipleChoiceQuestions.length
 							? currentMultipleChoice.answerOptions.map((item) => (
@@ -159,7 +159,7 @@ const Quiz = () => {
 					</fieldset>
 
 					{/* Render a skip question button if the currentQuestion is a MultipleChoiceQuestion or render a submit button if the currentQuestion is a SelectAllQuestion */}
-					<nav>
+					<nav className="text-center">
 						{currentQuestion < MultipleChoiceQuestions.length ? (
 							<button
 								onClick={() => handleClick(false)}
