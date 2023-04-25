@@ -19,7 +19,7 @@ const Quiz = () => {
 
 	// handleClick function for multiple choice questions
 	const handleClick = (isCorrect, answerID) => {
-		// Remove disabled attribute from the next question button, allowing a user to move on with the quiz
+		// Remove hidden attribute from the next question button, allowing a user to move on with the quiz
 		const nextQuestionBtn = document.getElementById("nextQuestionBtn");
 		nextQuestionBtn.classList.remove("hidden");
 
@@ -47,8 +47,16 @@ const Quiz = () => {
 	};
 
 	// handleClick function for select all questions
-	const handleSelectAllClick = () => {
-		compareAnswers();
+	const handleSelectAllClick = async () => {
+		await compareAnswers();
+		// Add hidden attribute to the submit answer button
+		const submitBtn = document.getElementById("submitAnswer");
+		submitBtn.classList.add("hidden");
+
+		// Remove hidden attribute from the next question button, allowing a user to move on with the quiz
+		const nextQuestionBtn = document.getElementById("nextQuestionBtn");
+		nextQuestionBtn.classList.remove("hidden");
+
 		// if all correct options are selected, increase score by 1
 		if (isSelectionCorrect) {
 			setScore(score + 1);
@@ -67,9 +75,15 @@ const Quiz = () => {
 
 	// this function calls the next question if there is one, or shows the final score if not
 	const callNextQuestion = () => {
-		console.log(`Element was clicked.`);
+		// Add hidden attribute to the next question button
 		const nextQuestionBtn = document.getElementById("nextQuestionBtn");
 		nextQuestionBtn.classList.add("hidden");
+
+		// If there is a submit button on the page, remove the hidden attribute to display the submit answer button
+		const submitBtn = document.getElementById("submitAnswer");
+		if (submitBtn) {
+			submitBtn.classList.remove("hidden");
+		}
 		//  if there are more questions in the array, call the next question object
 		//  else show final score
 		const nextQuestion = currentQuestion + 1;
@@ -82,8 +96,10 @@ const Quiz = () => {
 	};
 
 	// this function compares the answers given to the correct answers provided by the question component
-	const compareAnswers = () => {
+	const compareAnswers = async () => {
 		const correctAnswers = currentSelectAll.correctAnswers;
+		const answerID = currentSelectAll.answerOptions.map((item) => item.id);
+		const iterator = answerID.keys();
 
 		// if the arrays are not equal in length, setIsSelectionCorrect to false and break out the compareAnswers function.
 		if (selectedOptions.length !== correctAnswers.length) {
@@ -95,6 +111,17 @@ const Quiz = () => {
 		const compareSelection = selectedOptions.every((option) =>
 			correctAnswers.includes(option)
 		);
+
+		for (const key of iterator) {
+			const answerElement = document.getElementById(`answer${key}`);
+			console.log(answerElement);
+			if (compareSelection) {
+				answerElement.classList.add("btn", "btn-outline-success");
+				setScore(score + 1);
+			} else {
+				answerElement.classList.add("btn", "btn-outline-danger");
+			}
+		}
 
 		// pass the value of compareSelection (true or false) to setIsSelectionCorrect
 		setIsSelectionCorrect(compareSelection);
@@ -110,7 +137,6 @@ const Quiz = () => {
 		<section className="container">
 			{showScore ? (
 				<header className="py-5 mt-4">
-					{/* Display final score */}
 					<div className="display-4">
 						Your score is {((score / questions) * 100).toFixed(0)}%!
 					</div>
@@ -162,13 +188,15 @@ const Quiz = () => {
 									<div
 										className="form-check form-control-lg"
 										key={item.answerText}
+										id={"answer" + item.id}
 									>
 										<label
+											id={"label" + item.id}
 											className="form-check-label"
 											htmlFor={item.answerText}
 										>
 											<input
-												id={item.answerText}
+												id={"input" + item.id}
 												name={item.answerText}
 												type="checkbox"
 												className="form-check-input  mb-2"
@@ -181,7 +209,7 @@ const Quiz = () => {
 							  ))}
 					</fieldset>
 
-					{/* Render a skip question button if the currentQuestion is a MultipleChoiceQuestion or render a submit button if the currentQuestion is a SelectAllQuestion */}
+					{/* Render a next question button once a user selects an option if multipleChoice or render a submit button if the currentQuestion is a SelectAllQuestion */}
 					<nav className="text-center">
 						{currentQuestion < MultipleChoiceQuestions.length ? (
 							<button
@@ -192,12 +220,22 @@ const Quiz = () => {
 								Next Question<i className="bi bi-arrow-right-circle ms-2"></i>
 							</button>
 						) : (
-							<button
-								onClick={handleSelectAllClick}
-								className="btn btn-success mt-4"
-							>
-								Submit Answer
-							</button>
+							<>
+								<button
+									id="submitAnswer"
+									onClick={handleSelectAllClick}
+									className="btn btn-success mt-4"
+								>
+									Submit Answer
+								</button>
+								<button
+									id="nextQuestionBtn"
+									onClick={callNextQuestion}
+									className="btn btn-primary mt-4 hidden"
+								>
+									Next Question<i className="bi bi-arrow-right-circle ms-2"></i>
+								</button>
+							</>
 						)}
 					</nav>
 				</article>
