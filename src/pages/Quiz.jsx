@@ -114,7 +114,6 @@ const Quiz = () => {
 
 		for (const key of iterator) {
 			const answerElement = document.getElementById(`answer${key}`);
-			console.log(answerElement);
 			if (compareSelection) {
 				answerElement.classList.add("btn", "btn-outline-success");
 				setScore(score + 1);
