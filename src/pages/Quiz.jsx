@@ -134,7 +134,7 @@ const Quiz = () => {
 
 	return (
 		// within the same div element, either render the question based on the array.length, or render the final score
-		<section className="container">
+		<section className="container mb-4">
 			{showScore ? (
 				<header className="py-5 mt-4 text-center">
 					<div className="display-4">

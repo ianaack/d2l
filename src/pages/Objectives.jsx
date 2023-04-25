@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Objectives = () => {
 	return (
-		<section className="container">
+		<section className="container mb-4">
 			<header className="px-2 py-5 my-5 text-center">
 				<h1 className="display-5 fw-bold">Learning Objectives</h1>
 				<p className="mb-2 fs-5">

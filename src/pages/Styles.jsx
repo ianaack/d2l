@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Styles = () => {
 	return (
-		<section className="container">
+		<section className="container mb-4">
 			<header className="px-2 mt-4 text-center">
 				<h1 className="display-5 fw-bold border-2 border-bottom pb-2">
 					Autocratic, Democratic,
