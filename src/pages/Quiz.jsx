@@ -136,7 +136,7 @@ const Quiz = () => {
 		// within the same div element, either render the question based on the array.length, or render the final score
 		<section className="container">
 			{showScore ? (
-				<header className="py-5 mt-4">
+				<header className="py-5 mt-4 text-center">
 					<div className="display-4">
 						Your score is {((score / questions) * 100).toFixed(0)}%!
 					</div>
